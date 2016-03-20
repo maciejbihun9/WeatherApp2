@@ -12,5 +12,6 @@ public class Weather {
     public void newmethod(){
         String maciek = "maciej";
         String bihun = "bihun";
+        int wiek = 22;
     }
 }
