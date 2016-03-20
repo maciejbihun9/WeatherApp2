@@ -8,4 +8,9 @@ public class Weather {
     public static void updateWeather(){
 
     }
+
+    public void newmethod(){
+        String maciek = "maciej";
+        String bihun = "bihun";
+    }
 }
