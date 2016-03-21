@@ -31,9 +31,13 @@ public class ParseData {
     private static final String TAG = "ParseData";
 
     private SharedPreferences prefs;
+    private double latitude;
+    private double longitude;
 
     private Context mContext;
-    public ParseData(Context mContext){
+    public ParseData(Context mContext, double latitude, double longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.mContext = mContext;
         prefs = mContext.getSharedPreferences(UserLocation.MyPREFERENCES, Context.MODE_PRIVATE);
     }
@@ -94,7 +98,7 @@ public class ParseData {
     }
 
     private String buildUrl(){
-        return URL+API_KEY+"/"+getUserLatitude()+","+getUserLongitude();
+        return URL+API_KEY+"/"+latitude+","+longitude;
         //return URL+API_KEY+"/"+LATITUDE+","+LONGITUDE;
     }
 

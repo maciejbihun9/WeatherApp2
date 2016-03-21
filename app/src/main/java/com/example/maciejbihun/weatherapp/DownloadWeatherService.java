@@ -16,7 +16,6 @@ public class DownloadWeatherService extends IntentService {
         super("");
     }
 
-    private ParseData mParseData;
     public DownloadWeatherService(String name) {
         super(name);
     }
@@ -25,7 +24,7 @@ public class DownloadWeatherService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         double latitude = (double)intent.getSerializableExtra(LOCATION_LATITUDE);
         double longitude = (double)intent.getSerializableExtra(LOCATION_LONGITUDE);
-        mParseData = new ParseData(getApplicationContext());
+        ParseData mParseData = new ParseData(getApplicationContext(), latitude, longitude);
         mParseData.showResultsInLog();
     }
 
