@@ -1,6 +1,7 @@
 package com.example.maciejbihun.weatherapp;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
@@ -9,6 +10,8 @@ import android.util.Log;
  */
 public class DownloadWeatherService extends IntentService {
 
+    public static final String LOCATION_LATITUDE = "latitude";
+    public static final String LOCATION_LONGITUDE = "longitude";
     public DownloadWeatherService(){
         super("");
     }
@@ -20,8 +23,16 @@ public class DownloadWeatherService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.i("działa serwis?", "tak");
+        double latitude = (double)intent.getSerializableExtra(LOCATION_LATITUDE);
+        double longitude = (double)intent.getSerializableExtra(LOCATION_LONGITUDE);
         mParseData = new ParseData(getApplicationContext());
         mParseData.showResultsInLog();
+    }
+
+    public static void startDownload(Context mContext, double latitude, double longitude){
+        Intent i = new Intent(mContext, DownloadWeatherService.class);
+        i.putExtra(LOCATION_LATITUDE, latitude);
+        i.putExtra(LOCATION_LONGITUDE, longitude);
+        mContext.startService(i);
     }
 }

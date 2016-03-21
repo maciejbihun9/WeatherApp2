@@ -20,7 +20,6 @@ public class UserLocation {
     private Context mContext;
     private static final int LOCATION_REFRESH_TIME = 10;
     private static final int LOCATION_REFRESH_DISTANCE = 10;
-
     //stałe do określenia danych w SharedPreferences.
     public static final String LOCATION_LATITUDE = "latitude";
     public static final String LOCATION_LONGITUDE = "longitude";
@@ -52,11 +51,10 @@ public class UserLocation {
     private final LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(final Location location) {
-            saveUserLocation(location.getLatitude(), location.getLongitude());
-            Intent i = new Intent(mContext, DownloadWeatherService.class);
-            mContext.startService(i);
-            Log.i("Latitude", location.getLatitude() + "");
-            Log.i("Longitude", location.getLongitude() + "");
+            /*saveUserLocation(location.getLatitude(), location.getLongitude());
+            Intent i = new Intent(mContext, DownloadWeatherService.class);*/
+            DownloadWeatherService.startDownload(mContext, location.getLatitude(), location.getLongitude());
+            /*mContext.startService(i);*/
         }
 
         @Override
